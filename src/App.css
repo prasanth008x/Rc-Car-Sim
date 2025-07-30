@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+.font-orbitron {
+  font-family: 'Orbitron', monospace;
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+}
+
+.neon-text {
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+}
+
+.racing-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 2s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.car-preview {
+  perspective: 1000px;
+}
+
+.car-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.car-3d:hover {
+  transform: rotateY(15deg) rotateX(5deg);
+}
+
+.track-preview {
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.track-preview::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+  border-radius: inherit;
+  z-index: -1;
+  animation: border-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes border-glow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.speedometer {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(30, 30, 30, 0.9) 100%);
+  border: 3px solid #00ffff;
+  border-radius: 50%;
+}
+
+.controller-button {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 2px solid #00ffff;
+  transition: all 0.2s ease;
+}
+
+.controller-button:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.nitro-effect {
+  animation: nitro-boost 0.5s ease-in-out;
+}
+
+@keyframes nitro-boost {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.5) hue-rotate(180deg); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.race-track {
+  background: 
+    radial-gradient(ellipse at center, transparent 30%, rgba(255, 255, 255, 0.1) 31%, rgba(255, 255, 255, 0.1) 40%, transparent 41%),
+    linear-gradient(90deg, #333 0%, #555 50%, #333 100%);
+}
+
+.collision-effect {
+  animation: collision-shake 0.3s ease-in-out;
+}
+
+@keyframes collision-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-10px) translateY(-5px); }
+  20% { transform: translateX(10px) translateY(5px); }
+  30% { transform: translateX(-8px) translateY(-3px); }
+  40% { transform: translateX(8px) translateY(3px); }
+  50% { transform: translateX(-6px) translateY(-2px); }
+  60% { transform: translateX(6px) translateY(2px); }
+  70% { transform: translateX(-4px) translateY(-1px); }
+  80% { transform: translateX(4px) translateY(1px); }
+  90% { transform: translateX(-2px); }
+}
+
+.drift-smoke {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: smoke-fade 1s ease-out forwards;
+}
+
+@keyframes smoke-fade {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.racing-hud {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.menu-button {
+  background: linear-gradient(145deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.menu-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-button:hover::before {
+  opacity: 1;
+}
+
+.menu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .controller-button {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .speedometer {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .racing-hud {
+    font-size: 0.875rem;
+  }
+}
+
+/* Performance optimizations */
+.game-canvas {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Touch improvements */
+.controller-button {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.controller-button:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.5);
+}
